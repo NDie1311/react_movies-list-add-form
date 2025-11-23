@@ -6,14 +6,16 @@ type Props = {
   onAdd: (movie: Movie) => void;
 };
 
+const INITIAL_MOVIE_STATE = {
+  title: '',
+  description: '',
+  imgUrl: '',
+  imdbUrl: '',
+  imdbId: '',
+};
+
 export const NewMovie: React.FC<Props> = ({ onAdd }) => {
-  const [movie, setMovie] = useState({
-    title: '',
-    description: '',
-    imgUrl: '',
-    imdbUrl: '',
-    imdbId: '',
-  });
+  const [movie, setMovie] = useState(INITIAL_MOVIE_STATE);
 
   // Increase the count after successful form submission
   // to reset touched status of all the `Field`s
@@ -40,13 +42,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
       onAdd(movie);
 
       // Reset form
-      setMovie({
-        title: '',
-        description: '',
-        imgUrl: '',
-        imdbUrl: '',
-        imdbId: '',
-      });
+      setMovie(INITIAL_MOVIE_STATE);
 
       // Reset touched states by incrementing key
       setCount(prev => prev + 1);
